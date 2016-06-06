@@ -28,7 +28,6 @@ class FedexCourier implements CourierInterface
      */
     public function dispatch($number)
     {
-        
     }
     
 }

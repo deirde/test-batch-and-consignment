@@ -28,7 +28,6 @@ class DhlCourier implements CourierInterface
      */
     public function dispatch($number)
     {
-        
     }
     
 }
