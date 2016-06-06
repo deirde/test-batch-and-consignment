@@ -3,11 +3,16 @@
 class Batch
 {
     
+    /**
+     * The current batch state.
+     */
     const OPEN = 0;
     const PROCESSED = 1;
     const CLOSED = 2;
     
-    protected $state;
+    protected $state = self::CLOSED;
+    
+    protected $courier;
     
     /**
      * @var array
@@ -39,7 +44,7 @@ class Batch
     public function addConsignment(Consignment $consignment)
     {
         
-        $this->consignments[$consignment->getId()][] = $consignment;
+        $this->consignments[get_class($consignment->courier)][] = $consignment;
         
     }
 
@@ -53,12 +58,15 @@ class Batch
         if ($this->state === self::OPEN) {
             
             $this->state = self::PROCESSED;
+        
+            var_dump($this->consignments);
             
             // Loop through each of the consignment.
             foreach ($this->consignments as $consignment_ids) {
                 
                 foreach ($consignment_ids as $consignment) {
-                
+                    
+                    // Process the consignment.
                     $consignment->process();
                     
                 }
@@ -66,6 +74,19 @@ class Batch
             }
             
             $this->state = self::CLOSED;
+            
+            foreach ($this->consignments as $consignment_ids) {
+                
+                foreach ($consignment_ids as $consignment) {
+                    
+                    // Process the consignment.
+                    $consignment->process();
+                    
+                    $consignment->i = 0;
+                    
+                }
+                
+            }
             
         } else {
             

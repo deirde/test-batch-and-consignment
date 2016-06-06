@@ -19,6 +19,9 @@ $batch->begin();
  */
 $batch->addConsignment(new Consignment(new FedexCourier));
 $batch->addConsignment(new Consignment(new DhlCourier));
+$batch->addConsignment(new Consignment(new FedexCourier));
+$batch->addConsignment(new Consignment(new DhlCourier));
+$batch->addConsignment(new Consignment(new DhlCourier));
 
 /*
  * The batch end.

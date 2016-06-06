@@ -6,13 +6,13 @@ class Consignment
     /**
      * @var CourierInterface
      */
-    protected $courier;
+    public $courier;
 
     /**
      * The consignment ID (unique number).
      * @var int $number
      */
-    protected $id;
+    protected $id = 0;
 
     /**
      * @param CourierInterface $courier
