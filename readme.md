@@ -13,8 +13,8 @@ What you should produce
 Build a class structure to facilitate the implementation of the scenario set out above.<br/>
 Assume that your class library will be given to another developer at a later date to build the interface for the client.<br/>
 The client interface will have three primary functions;<br/>
-1. Start new batch
-2. Add consignment
+1. Start new batch<br/>
+2. Add consignment<br/>
 3. End current batch
 
 Note
