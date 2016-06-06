@@ -3,6 +3,12 @@
 class Batch
 {
     
+    const OPEN = 0;
+    const PROCESSED = 1;
+    const CLOSED = 2;
+    
+    protected $state;
+    
     /**
      * @var array
      */
@@ -11,33 +17,59 @@ class Batch
     /**
      * Start the dispatch period.
      */
-    public function startDispatchPeriod()
+    public function begin()
     {
+        
+        if ($this->state === self::CLOSED) {
+            
+            $this->state = self::OPEN;
+            
+        } else {
+            
+            // Message or error.
+            
+        }
+        
     }
 
     /**
-     * Add a consignment to the current batch
-     *
+     * Add the consignment.
      * @param Consignment $consignment
      */
     public function addConsignment(Consignment $consignment)
     {
-        $this->consignments[] = $consignment;
+        
+        $this->consignments[$consignment->getId()][] = $consignment;
+        
     }
 
     /**
      * Process the consignments.
      * 
      */
-    public function endDispatchPeriod()
+    public function stop()
     {
         
-        // loop through each of the consignments
-        // the storage dependency could be use here to track the consignment numbers
-        // i.e. $c->getNumber()
-        foreach ($this->consignments as $consignment) {
+        if ($this->state === self::OPEN) {
             
-            $consignment->process();
+            $this->state = self::PROCESSED;
+            
+            // Loop through each of the consignment.
+            foreach ($this->consignments as $consignment_ids) {
+                
+                foreach ($consignment_ids as $consignment) {
+                
+                    $consignment->process();
+                    
+                }
+                
+            }
+            
+            $this->state = self::CLOSED;
+            
+        } else {
+            
+            // Message or error.
             
         }
         

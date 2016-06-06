@@ -12,7 +12,7 @@ require_once 'FedexCourier.class.php';
  * The batch starts.
  */
 $batch = new Batch();
-$batch->startDispatchPeriod();
+$batch->begin();
 
 /*
  * Add consignment.
@@ -23,6 +23,6 @@ $batch->addConsignment(new Consignment(new DhlCourier));
 /*
  * The batch end.
  */
-$batch->endDispatchPeriod();
+$batch->stop();
 
 ?>
