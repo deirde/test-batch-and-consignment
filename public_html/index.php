@@ -9,7 +9,7 @@ require_once 'DhlCourier.class.php';
 require_once 'FedexCourier.class.php';
 
 /*
- * The batch starts.
+ * The batch begins.
  */
 $batch = new Batch();
 $batch->begin();
@@ -24,7 +24,7 @@ $batch->addConsignment(new Consignment(new DhlCourier));
 $batch->addConsignment(new Consignment(new DhlCourier));
 
 /*
- * The batch end.
+ * The batch ends.
  */
 $batch->stop();
 

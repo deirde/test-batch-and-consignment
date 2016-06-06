@@ -31,7 +31,7 @@ class Batch
             
         } else {
             
-            // Message or error.
+            // Skip, message or error.
             
         }
         
@@ -75,22 +75,9 @@ class Batch
             
             $this->state = self::CLOSED;
             
-            foreach ($this->consignments as $consignment_ids) {
-                
-                foreach ($consignment_ids as $consignment) {
-                    
-                    // Process the consignment.
-                    $consignment->process();
-                    
-                    $consignment->i = 0;
-                    
-                }
-                
-            }
-            
         } else {
             
-            // Message or error.
+            // Skip, message or error.
             
         }
         
